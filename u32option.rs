@@ -1,12 +1,17 @@
+//2022-07-11 by ming
 
 fn sum(list: &Vec<u32>) ->Option<u32>{
-    let mut sum=0;
+// 定义 Result 为 `Some（0）`
+    let mut result:Option<u32> = Some(0);
     for x in list
     {
-        sum+= x;
+        result = x.checked_add(result.unwrap());
     }
- // 结果 Result 被包装到 `Some` 取值中
-   return Some(sum);
+    if result.is_none() {
+        return None;
+    }
+ 
+    return result;
 }
 
 fn main() {
